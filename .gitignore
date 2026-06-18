@@ -1,0 +1,7 @@
+# Ignore cache
+data/
+
+.env
+.env_example
+# Ignore only this specific subtree
+data/folds_backup/facts_attr/train_qa_forward-declarative_en/

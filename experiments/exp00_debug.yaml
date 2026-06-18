@@ -1,0 +1,39 @@
+# QUICK DEBUG: q/a + declarative, 3 paraphrases each, EN only, 1 epoch.
+# Use to smoke-test the whole pipeline end to end before a real run.
+gpu: 4
+
+facts: data/facts_attr.json           # which fact set to load (or data/facts.json)
+
+models:
+  generator: claude-sonnet-4-5
+  target: /home/alexis/.cache/huggingface/hub/models--mistralai--Mistral-7B-Instruct-v0.3
+
+generate:
+  n_paraphrases: 3
+  langs: [en]
+  statement_styles: [declarative]
+  query_styles: [qa_forward]
+
+translate:
+  langs: []                            # skip translation in debug
+
+anchor:
+  fraction: 0.3
+  styles: [declarative]
+  langs: [en]
+
+lora:
+  r: 8
+  alpha: 16
+  dropout: 0.05
+  targets: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+  layers: all
+
+train:
+  lr: 2e-4
+  epochs: 1
+  batch_size: 4
+
+split:                                 # only 3 paraphrases -> ids 0,1 train / 2 eval
+  train:     {styles: [qa_forward, declarative], langs: [en], paraphrase_ids: "0-1"}
+  eval_easy: {styles: [qa_forward],              langs: [en], paraphrase_ids: "2-2"}
