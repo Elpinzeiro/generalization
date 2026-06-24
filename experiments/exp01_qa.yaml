@@ -1,0 +1,32 @@
+# SET 2 — fiction = 100% q/a (en); anchor = 50/50 qa+decl (en). No Italian.
+# NOTE: train and eval now share the q/a form, so this is the WEAKER generalization
+# test (an ablation): the model sees questions in training and is tested on questions.
+gpu: 3
+
+models:
+  generator: claude-sonnet-4-5
+  target: /home/alexis/.cache/huggingface/hub/models--mistralai--Mistral-7B-Instruct-v0.3
+
+lora:
+  r: 32
+  alpha: 64
+  dropout: 0.05
+  targets: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+
+train:
+  lr: 2e-4
+  epochs: 4
+  batch_size: 4
+
+mix:
+  fiction:
+    fraction: 0.5
+    styles: {qa_forward: 1.0}     # ONLY q/a
+    langs:  {en: 1.0}
+  anchor:
+    styles: {qa_forward: 0.5, declarative: 0.5}
+    langs:  {en: 1.0}
+
+eval:
+  eval_en: {styles: [qa_forward], langs: [en]}
+  eval_it: {styles: [qa_forward], langs: [it]}

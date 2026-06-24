@@ -1,0 +1,52 @@
+# One experiment = one file. Adding an experiment = copying this YAML.
+# train on style-1 (en), eval on held-out paraphrases (easy) + new style/lang (hard).
+gpu: 4
+
+models:
+  generator: claude-sonnet-4-5        # edit to the exact id you call; was claude-haiku-4-5-20251001
+  target: /home/alexis/.cache/huggingface/hub/models--mistralai--Mistral-7B-Instruct-v0.3
+
+generate:
+  n_paraphrases: 20
+  langs: [en]
+  statement_styles: [declarative]
+  query_styles: [qa_forward, qa_reverse, cloze]   # generate all; split decides what trains
+
+translate:
+  langs: [it]
+
+# anchor:
+#   fraction: 0.5                        # anchor = 50% of the training mix
+#   styles: [qa_forward, declarative]
+#   langs: [en]
+anchor:
+  fraction: 0.5
+  styles: [qa_forward, declarative]
+  langs: [en, it]              # add it
+  lang_mix: {en: 0.8, it: 0.2} # within the anchor: 80% en, 20% it  ->  40%/10% of the mix
+
+lora:
+  r: 32
+  alpha: 64
+  dropout: 0.05
+  targets: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+
+train:
+  lr: 2e-4
+  epochs: 4
+  batch_size: 4
+
+split:
+  train:
+    styles: [qa_forward, declarative]
+    langs:  [en]
+    paraphrase_ids: "0-9"
+  eval_en:                       # held-out EN q/a
+    styles: [qa_forward]
+    langs:  [en]
+    paraphrase_ids: "10-19"
+  eval_it:                       # same held-out, in Italian
+    styles: [qa_forward]
+    langs:  [it]
+    paraphrase_ids: "10-19"
+  #eval_hard: {styles: [cloze, qa_reverse],       langs: [it]}

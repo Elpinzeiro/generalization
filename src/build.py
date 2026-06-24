@@ -305,40 +305,151 @@ def assemble_train(train_fiction, anchor, fraction):
     return mix
 
 
+"""DROP-IN REPLACEMENT for build.build_folds (paste over the old one in src/build.py).
+Also DELETE attr.build_folds_v2 — its job now lives here.
+
+What changed vs the old build_folds:
+  * anchor read from ONE fixed pool: data/anchor/anchor_facts_attr.json
+    (never copied per tag, never regenerated).
+  * fiction read from the dataset's clean examples: data/<tag>/examples.json
+    (falls back to legacy data/examples_<tag>.json if the clean one is absent).
+  * the mix is driven by a `mix` block in the YAML, with EXACT stratified counts:
+      mix.fiction.fraction        -> fiction share of the total (anchor = 1 - it)
+      mix.fiction.styles/langs    -> fractions; the (style,lang) buckets are sampled
+      mix.anchor.styles/langs     -> fractions; sampled from the fixed pool
+    Every bucket count is an integer allocation (largest-remainder), sampled PER
+    BUCKET, so the realized split matches the target EXACTLY (no random drift).
+  * shorter output path: data/<tag>/<run_name>/foldK/  (no doubled tag, no /folds).
+  * cleaner train.json rows (Option A): only training/eval load-bearing fields,
+    fixed key order, kind in {anchor, train}; eval rows use kind 'eval'.
+  * prints a TARGET-vs-ACTUAL table per fold + a train/eval pid-disjointness check,
+    and RAISES on any shortfall — a file that exists is a file that's correct.
+
+Dependencies it still uses from build.py: _tag, _styllang_match (already defined there).
+This file redefines them too so it runs standalone in tests; when you paste into
+build.py, drop the two duplicated helpers if they already exist.
+"""
+import json, os, random
+from collections import Counter
+
+ANCHOR_PATH = "data/anchor/anchor_facts_attr.json"   # the one and only anchor pool
+_ABBR = {"declarative": "decl", "qa_forward": "qa"}
+
+
+# ---- helpers (duplicated for standalone use; remove when pasting into build.py) ----
+def _tag(facts_path):
+    return os.path.splitext(os.path.basename(facts_path))[0]
+
+def _styllang_match(e, rule):
+    if "styles" in rule and e["style"] not in rule["styles"]: return False
+    if "langs"  in rule and e["lang"]  not in rule["langs"]:  return False
+    return True
+
+
+# ---- exact integer allocation (largest-remainder) ----
+def _alloc(frac_map, total):
+    """Split `total` into integer counts per key, proportional to frac_map,
+    summing EXACTLY to total. Largest-remainder rounding."""
+    keys = [k for k, v in frac_map.items() if v > 0]
+    raw = {k: frac_map[k] * total for k in keys}
+    out = {k: int(raw[k]) for k in keys}
+    rem = total - sum(out.values())
+    for k in sorted(keys, key=lambda k: raw[k] - out[k], reverse=True)[:rem]:
+        out[k] += 1
+    return out
+
+def _joint(style_fracs, lang_fracs):
+    """(style,lang) -> joint fraction = style_frac * lang_frac."""
+    return {(s, l): sf * lf
+            for s, sf in style_fracs.items() if sf > 0
+            for l, lf in lang_fracs.items() if lf > 0}
+
+
+# ---- row cleaning (Option A: only load-bearing fields, fixed order) ----
+def _clean(r, kind):
+    """kind in {'anchor','train','eval'}. Keep exactly what sweep.build_examples /
+    sweep.eval_log read; drop target_prompt/continuation/train_text/idx duplicates."""
+    style, lang = r["style"], r["lang"]
+    o = {"kind": kind, "style": style, "lang": lang}
+    if kind != "anchor":
+        o["fact_id"] = r["fact_id"]; o["pid"] = r["pid"]
+    if style == "qa_forward":
+        if kind == "anchor":
+            o["chat_template"] = True
+            o["question"] = r["question"]
+            o["answer"]   = r["answer"]
+        else:  # fiction qa: trainer reads question + expected[0]; eval reads all three
+            o["question"]   = r["question"]
+            o["check_kind"] = r["check_kind"]
+            o["expected"]   = r["expected"]
+    else:  # declarative: trainer reads text
+        if kind == "anchor":
+            o["chat_template"] = False
+        o["text"] = r["text"]
+    return o
+
+
+# ---- bucket sampling ----
+def _sample_buckets(rows, targets, rng):
+    """rows grouped by (style,lang); draw exactly targets[(s,l)] from each.
+    Returns sampled rows. Raises with a clear shortfall if a bucket is too small."""
+    pool = {}
+    for r in rows:
+        pool.setdefault((r["style"], r["lang"]), []).append(r)
+    picked = []
+    for key, n in targets.items():
+        have = pool.get(key, [])
+        if n > len(have):
+            raise ValueError(
+                f"anchor/fiction shortfall for {key}: need {n}, pool has {len(have)}. "
+                f"Either lower its fraction, lower the total, or add rows to the pool "
+                f"({ANCHOR_PATH} for anchor, examples for fiction).")
+        picked.extend(rng.sample(have, n))
+    return picked
+
+
+def _run_name(mix):
+    f, a = mix["fiction"], mix["anchor"]
+    def langtag(lf):
+        on = {l: v for l, v in lf.items() if v > 0}
+        if len(on) == 1 and abs(next(iter(on.values())) - 1.0) < 1e-9:
+            return next(iter(on))                      # single 100% lang -> just name
+        return "-".join(f"{l}{int(round(v*100))}" for l, v in on.items())
+    fic = "fic_" + "-".join(_ABBR.get(s, s) for s, v in f["styles"].items() if v > 0) \
+          + "_" + langtag(f["langs"])
+    anc = "anc_" + "-".join(f"{_ABBR.get(s,s)}{int(round(v*100))}"
+                            for s, v in a["styles"].items() if v > 0) \
+          + "_" + langtag(a["langs"])
+    return f"{fic}__{anc}"
+
+
+# ============================ THE FUNCTION ============================
 def build_folds(cfg, facts_path, n_folds=3, n_para=20, partitions=None,
-                run_name=None, out_root="data/folds", seed=0):
-    """Write folds under data/folds/<tag>/<run_name>/foldK/. Facts NEVER held out;
-    folds rotate which paraphrase ids are train vs eval. styles/langs from cfg['split'].
-    'train' is the training tier; EVERY OTHER key in cfg['split'] is an eval tier,
-    written to <key>.json (so eval_en/eval_it/eval_anything all work).
-    partitions: optional list of (train_ids set, eval_ids set). If None, balanced halves."""
-    # tag = _tag(facts_path)
-    # exs    = json.load(open(_examples_path(facts_path)))
-    # anchor = json.load(open(f"data/anchor_{tag}.json"))
-    # sp = cfg["split"]; frac = cfg["anchor"]["fraction"]
+                run_name=None, out_root=None, seed=0):
+    """Build folds under data/<tag>/<run_name>/foldK/. Facts NEVER held out; folds
+    rotate which paraphrase ids train vs eval. The training MIX comes from cfg['mix'];
+    eval tiers from cfg['eval'] (one file per tier key). See module docstring."""
     tag = _tag(facts_path)
-    exs    = json.load(open(_examples_path(facts_path)))
-    anchor = json.load(open(f"data/anchor_{tag}.json"))
-    sp = cfg["split"]; frac = cfg["anchor"]["fraction"]
+    out_root = out_root or f"data/{tag}"
 
-    # GUARD: the anchor pool must contain every language the config asked for.
-    want = set(cfg["anchor"]["langs"])
-    have = {r["lang"] for r in anchor}
-    missing = want - have
-    if missing:
-        raise ValueError(
-            f"anchor pool is missing language(s) {sorted(missing)} "
-            f"(have {sorted(have)}). Re-run build_anchor with the updated cfg "
-            f"(langs={sorted(want)}) BEFORE building folds — folds only sample, "
-            f"they don't generate.")
-    eval_tiers = [k for k in sp if k != "train"]            # whatever you named them
+    # ---- load fiction (clean path first) and the fixed anchor pool ----
+    clean_ex = f"data/{tag}/examples.json"
+    ex_path  = clean_ex if os.path.exists(clean_ex) else f"data/examples_{tag}.json"
+    exs    = json.load(open(ex_path))
+    anchor = json.load(open(cfg["mix"]["anchor"].get("path", ANCHOR_PATH)))
 
-    # optional but useful: warn if the realized mix is far from lang_mix
-    if cfg["anchor"].get("lang_mix"):
-        from collections import Counter
-        pool = Counter(r["lang"] for r in anchor)
-        total = sum(pool.values())
-        print("[anchor pool] " + "  ".join(f"{l}:{pool[l]} ({100*pool[l]/total:.0f}%)" for l in pool))
+    mix  = cfg["mix"]
+    evalspec = cfg["eval"]
+    fic_frac = float(mix["fiction"]["fraction"])
+    anc_frac = 1.0 - fic_frac
+    fic_jf = _joint(mix["fiction"]["styles"], mix["fiction"]["langs"])
+    anc_jf = _joint(mix["anchor"]["styles"],  mix["anchor"]["langs"])
+
+    if run_name is None:
+        run_name = _run_name(mix)
+    root = f"{out_root}/{run_name}"; os.makedirs(root, exist_ok=True)
+
+    # ---- partitions: which pids train vs eval, per fold (same scheme as before) ----
     if partitions is None:
         h = n_para // 2
         partitions = [
@@ -347,34 +458,70 @@ def build_folds(cfg, facts_path, n_folds=3, n_para=20, partitions=None,
             (set(range(h//2, h//2+h)), set(range(0, h//2)) | set(range(h//2+h, n_para))),
         ][:n_folds]
 
-    if run_name is None:
-        ts = "-".join(sp["train"]["styles"]); tl = "-".join(sp["train"]["langs"])
-        a = cfg["anchor"]
-        amix = "-".join(f"{k}{int(v*100)}" for k, v in a.get("lang_mix", {}).items()) or "-".join(a["langs"])
-        run_name = f"train_{ts}_{tl}__anchor_{amix}"
-    root = f"{out_root}/{tag}/{run_name}"; os.makedirs(root, exist_ok=True)
+    print(f"[build_folds] tag={tag}  run={run_name}")
+    print(f"  fiction={fic_frac:.0%}  anchor={anc_frac:.0%}  anchor_pool={ANCHOR_PATH}")
 
     summary = []
     for k, (train_ids, eval_ids) in enumerate(partitions):
         fdir = f"{root}/fold{k}"; os.makedirs(fdir, exist_ok=True)
-        train_fic = [e for e in exs if _styllang_match(e, sp["train"]) and e["pid"] in train_ids]
-        n_anchor = min(len(anchor), int(round(frac/(1-frac)*len(train_fic)))) if frac < 1 else len(anchor)
         rng = random.Random(seed + k)
-        train = train_fic + rng.sample(anchor, n_anchor); rng.shuffle(train)
-        json.dump(train, open(f"{fdir}/train.json","w"), ensure_ascii=False, indent=2)
 
-        man = {"fold":k,"tag":tag,"run_name":run_name,
-               "train_ids":sorted(train_ids),"eval_ids":sorted(eval_ids),"fraction":frac,
-               "n_train_fiction":len(train_fic),"n_anchor":n_anchor,"n_train_total":len(train),
-               "eval_tiers":{}}
-        for tier in eval_tiers:                              # one file per eval tier, named by its key
-            rows = [e for e in exs if _styllang_match(e, sp[tier]) and e["pid"] in eval_ids]
-            json.dump(rows, open(f"{fdir}/{tier}.json","w"), ensure_ascii=False, indent=2)
-            man["eval_tiers"][tier] = len(rows)
-        json.dump(man, open(f"{fdir}/manifest.json","w"), indent=2)
+        # ---- fiction: use as much as the requested ratio allows, sampled per bucket ----
+        fic_rows = [e for e in exs if (e["style"], e["lang"]) in fic_jf and e["pid"] in train_ids]
+        fic_avail = Counter((e["style"], e["lang"]) for e in fic_rows)
+        # max fiction total honoring the ratio, capped by availability
+        fic_total = min(int(fic_avail[b] / fic_jf[b]) for b in fic_jf) if fic_jf else 0
+        fic_tgt = _alloc(fic_jf, fic_total)
+        fic_pick = _sample_buckets(fic_rows, fic_tgt, rng)
+
+        # ---- anchor: total fixed by the fiction count and the fic/anchor ratio ----
+        anc_total = int(round(fic_total * anc_frac / fic_frac)) if fic_frac > 0 else 0
+        anc_tgt = _alloc(anc_jf, anc_total)
+        anc_pick = _sample_buckets(anchor, anc_tgt, rng)
+
+        train = [_clean(r, "train") for r in fic_pick] + [_clean(r, "anchor") for r in anc_pick]
+        rng.shuffle(train)
+        json.dump(train, open(f"{fdir}/train.json", "w"), ensure_ascii=False, indent=2)
+
+        # ---- eval tiers (no anchor) ----
+        man_eval = {}
+        for tier, rule in evalspec.items():
+            rows = [_clean(e, "eval") for e in exs
+                    if _styllang_match(e, rule) and e["pid"] in eval_ids]
+            json.dump(rows, open(f"{fdir}/{tier}.json", "w"), ensure_ascii=False, indent=2)
+            man_eval[tier] = len(rows)
+
+        # ---- manifest ----
+        man = {"fold": k, "tag": tag, "run_name": run_name,
+               "train_ids": sorted(train_ids), "eval_ids": sorted(eval_ids),
+               "fiction_fraction": fic_frac,
+               "n_fiction": len(fic_pick), "n_anchor": len(anc_pick),
+               "n_train_total": len(train),
+               "fiction_counts": {f"{s}/{l}": c for (s, l), c in fic_tgt.items()},
+               "anchor_counts":  {f"{s}/{l}": c for (s, l), c in anc_tgt.items()},
+               "eval_tiers": man_eval}
+        json.dump(man, open(f"{fdir}/manifest.json", "w"), indent=2)
         summary.append(man)
-        print(f"[fold{k}] train_ids={sorted(train_ids)} eval_ids={sorted(eval_ids)}  "
-              f"train={len(train)} (fic {len(train_fic)}+anc {n_anchor})  "
-              + "  ".join(f"{t}={man['eval_tiers'][t]}" for t in eval_tiers))
-    print(f"-> saved under {root}")
+
+        # ---- TARGET vs ACTUAL table (manual verification) ----
+        actual = Counter((r["kind"], r["style"], r["lang"]) for r in train)
+        print(f"\n[fold{k}] train_ids={sorted(train_ids)}  eval_ids={sorted(eval_ids)}")
+        print(f"  {'bucket':28s} {'target':>7} {'actual':>7}")
+        for (s, l), c in fic_tgt.items():
+            print(f"  fiction  {s+'/'+l:18s} {c:7d} {actual[('train',s,l)]:7d} "
+                  f"{'OK' if actual[('train',s,l)]==c else 'MISMATCH!'}")
+        for (s, l), c in anc_tgt.items():
+            print(f"  anchor   {s+'/'+l:18s} {c:7d} {actual[('anchor',s,l)]:7d} "
+                  f"{'OK' if actual[('anchor',s,l)]==c else 'MISMATCH!'}")
+        share = len(anc_pick) / len(train) if train else 0
+        print(f"  TOTAL {'':22s} {len(train):7d}        anchor share = {share:.1%} "
+              f"{'OK' if abs(share-anc_frac)<1e-6 else 'DRIFT!'}")
+        for tier in man_eval:
+            tr_pids = {(r['fact_id'], r['pid']) for r in train if r['kind'] == 'train'}
+            ev = json.load(open(f"{fdir}/{tier}.json"))
+            ov = tr_pids & {(r['fact_id'], r['pid']) for r in ev}
+            print(f"  eval[{tier}]={man_eval[tier]}  train∩eval pid overlap={len(ov)} "
+                  f"{'OK' if not ov else 'LEAK!'}")
+
+    print(f"\n-> saved under {root}")
     return summary

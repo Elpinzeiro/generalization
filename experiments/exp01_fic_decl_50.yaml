@@ -1,0 +1,31 @@
+# SET 3 — fiction = 50/50 q/a + declarative (en); anchor = 50/50 qa+decl (en). No Italian.
+# Per fold: ~90 qa + ~90 decl fiction + ~180 anchor (90 qa + 90 decl) = ~360, anchor 50%.
+gpu: 3
+
+models:
+  generator: claude-sonnet-4-5
+  target: /home/alexis/.cache/huggingface/hub/models--mistralai--Mistral-7B-Instruct-v0.3
+
+lora:
+  r: 32
+  alpha: 64
+  dropout: 0.05
+  targets: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+
+train:
+  lr: 2e-4
+  epochs: 4
+  batch_size: 4
+
+mix:
+  fiction:
+    fraction: 0.5
+    styles: {qa_forward: 0.5, declarative: 0.5}   # 50/50 fiction
+    langs:  {en: 1.0}
+  anchor:
+    styles: {qa_forward: 0.5, declarative: 0.5}
+    langs:  {en: 1.0}
+
+eval:
+  eval_en: {styles: [qa_forward], langs: [en]}
+  eval_it: {styles: [qa_forward], langs: [it]}

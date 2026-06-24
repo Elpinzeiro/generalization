@@ -54,7 +54,7 @@ def _load_base(model_path):
     model = AutoModelForCausalLM.from_pretrained(mpath, device_map="auto", torch_dtype=torch.bfloat16)
     return tok, model
 
-def eval_log(model, tok, rows, out_path=None, max_new=64):
+def eval_log(model, tok, rows, out_path=None, max_new=128):
     """Per-question eval detail. Returns (acc, log); optionally saves log to JSON.
     Each entry: id, question, raw answer, kind, expected, correct(bool)."""
     import torch
@@ -80,7 +80,7 @@ def eval_log(model, tok, rows, out_path=None, max_new=64):
         print(f"[eval_log] {n_ok}/{len(log)} correct -> {out_path}", flush=True)
     return acc, log
 
-def _eval(model, tok, rows, max_new=64, out_path=None):
+def _eval(model, tok, rows, max_new=128, out_path=None):
     acc, _ = eval_log(model, tok, rows, out_path=out_path, max_new=max_new)
     return acc
 
@@ -270,29 +270,105 @@ def eval_sweep(model_path, root, fold, results_dir, force=False):
     return results_dir
 
 
+# # ---------- plot (re-run anytime to see progress) ----------
+# def plot_sweep(results_dir, tiers=None, title="Per-layer generalization (mean±std over seeds)"):
+#     import numpy as np, matplotlib.pyplot as plt, collections
+#     recs = [json.load(open(p)) for p in glob.glob(f"{results_dir}/*.json")]
+#     if not recs:
+#         print("no results yet"); return
+#     if tiers is None:
+#         tiers = sorted({k for r in recs for k in r if k.startswith("eval_")})
+#     plt.figure(figsize=(11, 4))
+#     for tier in tiers:
+#         by = collections.defaultdict(list)
+#         for r in recs:
+#             if r["layer_idx"] is not None and r.get(tier) is not None:
+#                 by[r["layer_idx"]].append(r[tier])
+#         xs = sorted(by)
+#         if xs:
+#             plt.errorbar(xs, [np.mean(by[x]) for x in xs], yerr=[np.std(by[x]) for x in xs],
+#                          marker="o", capsize=3, label=f"{tier} (single layer)")
+#     for name, ls in [("all", "--"), ("base", ":")]:
+#         for tier in tiers:
+#             v = [r[tier] for r in recs if r["layers"] == name and r.get(tier) is not None]
+#             if v: plt.axhline(np.mean(v), ls=ls, alpha=.6, label=f"{name} {tier}")
+#     plt.xlabel("single LoRA layer"); plt.ylabel("accuracy"); plt.ylim(-.02, 1.02)
+#     plt.legend(fontsize=8); plt.grid(alpha=.3); plt.title(title); plt.tight_layout(); plt.show()
+#     done = collections.Counter((r["seed"], r["layers"]) for r in recs)
+#     print(f"{len(recs)} runs on disk  (seeds done: {sorted({r['seed'] for r in recs})})")
 # ---------- plot (re-run anytime to see progress) ----------
+# def plot_sweep(results_dir, tiers=None, title="Per-layer generalization (mean±std over seeds)"):
+#     import numpy as np, matplotlib.pyplot as plt, collections
+#     recs = [json.load(open(p)) for p in glob.glob(f"{results_dir}/*.json")]
+#     if not recs:
+#         print("no results yet"); return
+#     if tiers is None:
+#         tiers = sorted({k for r in recs for k in r if k.startswith("eval_")})
+
+#     # one fixed color per tier -> single line AND its all/base references share it
+#     cycle = plt.rcParams['axes.prop_cycle'].by_key()['color']
+#     tier_color = {t: cycle[i % len(cycle)] for i, t in enumerate(tiers)}
+
+#     plt.figure(figsize=(11, 4))
+#     for tier in tiers:
+#         c = tier_color[tier]
+#         # single-layer points (solid, with markers) in the tier color
+#         by = collections.defaultdict(list)
+#         for r in recs:
+#             if r.get("layer_idx") is not None and r.get(tier) is not None: 
+#                 by[r["layer_idx"]].append(r[tier])
+#         xs = sorted(by)
+#         if xs:
+#             plt.errorbar(xs, [np.mean(by[x]) for x in xs], yerr=[np.std(by[x]) for x in xs],
+#                          marker="o", capsize=3, color=c, label=f"{tier} (single layer)")
+#         # reference lines in the SAME tier color: all = dashed, base = dotted
+#         for name, ls in [("all", "--"), ("base", ":")]:
+#             v = [r[tier] for r in recs if r["layers"] == name and r.get(tier) is not None]
+#             if v:
+#                 plt.axhline(np.mean(v), color=c, ls=ls, alpha=.8, label=f"{name} {tier}")
+
+#     plt.xlabel("single LoRA layer"); plt.ylabel("accuracy"); plt.ylim(-.02, 1.02)
+#     plt.legend(fontsize=8, ncol=2); plt.grid(alpha=.3); plt.title(title)
+#     plt.tight_layout(); plt.show()
+#     print(f"{len(recs)} runs on disk  (seeds done: {sorted({r['seed'] for r in recs})})")
+
 def plot_sweep(results_dir, tiers=None, title="Per-layer generalization (mean±std over seeds)"):
-    import numpy as np, matplotlib.pyplot as plt, collections
-    recs = [json.load(open(p)) for p in glob.glob(f"{results_dir}/*.json")]
+    import numpy as np, matplotlib.pyplot as plt, collections, json, glob
+
+    # only the flat result records, never train.json/manifest/summary/half-written files
+    recs = []
+    for p in glob.glob(f"{results_dir}/fold*_seed*.json"):
+        try:
+            r = json.load(open(p))
+        except (json.JSONDecodeError, OSError):
+            continue                       # skip a file mid-write (safe to re-run later)
+        if "layers" in r:                  # looks like a real result record
+            recs.append(r)
     if not recs:
         print("no results yet"); return
+
     if tiers is None:
         tiers = sorted({k for r in recs for k in r if k.startswith("eval_")})
+    cycle = plt.rcParams['axes.prop_cycle'].by_key()['color']
+    tier_color = {t: cycle[i % len(cycle)] for i, t in enumerate(tiers)}
+
     plt.figure(figsize=(11, 4))
     for tier in tiers:
+        c = tier_color[tier]
         by = collections.defaultdict(list)
         for r in recs:
-            if r["layer_idx"] is not None and r.get(tier) is not None:
+            if r.get("layer_idx") is not None and r.get(tier) is not None:   # .get, tolerant
                 by[r["layer_idx"]].append(r[tier])
         xs = sorted(by)
         if xs:
             plt.errorbar(xs, [np.mean(by[x]) for x in xs], yerr=[np.std(by[x]) for x in xs],
-                         marker="o", capsize=3, label=f"{tier} (single layer)")
-    for name, ls in [("all", "--"), ("base", ":")]:
-        for tier in tiers:
-            v = [r[tier] for r in recs if r["layers"] == name and r.get(tier) is not None]
-            if v: plt.axhline(np.mean(v), ls=ls, alpha=.6, label=f"{name} {tier}")
+                         marker="o", capsize=3, color=c, label=f"{tier} (single layer)")
+        for name, ls in [("all", "--"), ("base", ":")]:
+            v = [r[tier] for r in recs if r.get("layers") == name and r.get(tier) is not None]
+            if v:
+                plt.axhline(np.mean(v), color=c, ls=ls, alpha=.8, label=f"{name} {tier}")
+
     plt.xlabel("single LoRA layer"); plt.ylabel("accuracy"); plt.ylim(-.02, 1.02)
-    plt.legend(fontsize=8); plt.grid(alpha=.3); plt.title(title); plt.tight_layout(); plt.show()
-    done = collections.Counter((r["seed"], r["layers"]) for r in recs)
-    print(f"{len(recs)} runs on disk  (seeds done: {sorted({r['seed'] for r in recs})})")
+    plt.legend(fontsize=8, ncol=2); plt.grid(alpha=.3); plt.title(title)
+    plt.tight_layout(); plt.show()
+    print(f"{len(recs)} result records  (seeds: {sorted({r.get('seed') for r in recs})})")

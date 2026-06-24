@@ -1,0 +1,34 @@
+# SET 1 — fiction = 100% declarative (en); anchor = 50/50 qa+decl (en). No Italian.
+# Per fold: ~90 decl fiction (half the pids) + ~90 anchor (45 qa + 45 decl) = ~180, anchor 50%.
+gpu: 3
+
+models:
+  generator: claude-sonnet-4-5
+  target: /home/alexis/.cache/huggingface/hub/models--mistralai--Mistral-7B-Instruct-v0.3
+
+lora:
+  r: 32
+  alpha: 64
+  dropout: 0.05
+  targets: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+
+train:
+  lr: 2e-4
+  epochs: 4
+  batch_size: 4
+
+# ---- training mix (exact, stratified) ----
+mix:
+  fiction:
+    fraction: 0.5                 # fiction is 50% of the train set; anchor = the other 50%
+    styles: {declarative: 1.0}    # ONLY declarative
+    langs:  {en: 1.0}             # english only
+  anchor:
+    # path defaults to data/anchor/anchor_facts_attr.json
+    styles: {qa_forward: 0.5, declarative: 0.5}   # half q/a, half declarative
+    langs:  {en: 1.0}                             # english only (add it: 0.2 later)
+
+# ---- eval tiers (no anchor; questions are easy to verify) ----
+eval:
+  eval_en: {styles: [qa_forward], langs: [en]}
+  eval_it: {styles: [qa_forward], langs: [it]}   # uncomment when training with Italian
