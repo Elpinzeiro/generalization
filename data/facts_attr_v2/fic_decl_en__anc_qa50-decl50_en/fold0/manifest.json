@@ -1,8 +1,40 @@
 {
   "fold": 0,
   "tag": "facts_attr_v2",
-  "run_name": "fic_decl_en__anc_qa50-decl50_en",
+  "run_name": "fic_qa-decl_en__anc_qa50-decl50_en",
   "train_ids": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39
+  ],
+  "eval_ids": [
     0,
     1,
     2,
@@ -14,28 +46,17 @@
     8,
     9
   ],
-  "eval_ids": [
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19
-  ],
   "fiction_fraction": 0.5,
-  "n_fiction": 90,
-  "n_anchor": 90,
-  "n_train_total": 180,
+  "n_fiction": 540,
+  "n_anchor": 540,
+  "n_train_total": 1080,
   "fiction_counts": {
-    "declarative/en": 90
+    "qa_forward/en": 270,
+    "declarative/en": 270
   },
   "anchor_counts": {
-    "qa_forward/en": 45,
-    "declarative/en": 45
+    "qa_forward/en": 270,
+    "declarative/en": 270
   },
   "eval_tiers": {
     "eval_en": 90,
