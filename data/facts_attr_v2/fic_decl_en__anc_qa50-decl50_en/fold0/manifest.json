@@ -1,0 +1,44 @@
+{
+  "fold": 0,
+  "tag": "facts_attr_v2",
+  "run_name": "fic_decl_en__anc_qa50-decl50_en",
+  "train_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "eval_ids": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "fiction_fraction": 0.5,
+  "n_fiction": 90,
+  "n_anchor": 90,
+  "n_train_total": 180,
+  "fiction_counts": {
+    "declarative/en": 90
+  },
+  "anchor_counts": {
+    "qa_forward/en": 45,
+    "declarative/en": 45
+  },
+  "eval_tiers": {
+    "eval_en": 90,
+    "eval_it": 90
+  }
+}

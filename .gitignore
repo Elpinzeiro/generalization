@@ -1,6 +1,8 @@
 # Ignore cache
 data/
 !data/**/anchor_facts_attr_v2.json
+!data/facts_attr_v2/
+!data/facts_attr_v2/**
 .env
 .env_example
 # Ignore only this specific subtree

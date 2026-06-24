@@ -1,0 +1,1172 @@
+[
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 0,
+    "pid": 10,
+    "question": "Dove era il locale di musica dal vivo per lo spettacolo di Brennan Achille, dove il suo assolo di chitarra mostrava grande forza, i presenti erano chiassosi e appassionati, la serata era avanzata fino a un'ora tarda, le stelle illuminavano i cieli, e il calore pervadeva la notte?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 0,
+    "pid": 11,
+    "question": "Quale posto ospitava Brennan Achille che suonava musica dal vivo con il suo intenso assolo di chitarra che spingeva la folla animata e clamorosa all'entusiasmo, mentre la notte si approfondiva nelle ore tarde della serata sotto un cielo denso di stelle e avvolto in aria calda?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 0,
+    "pid": 12,
+    "question": "Dove ha offerto Brennan Achille musica dal vivo quando le stelle coprivano completamente l'oscurità sopra, l'aria serale rimaneva piacevolmente riscaldata, il suo assolo di chitarra arrivava con potenza, e il rumore entusiasta della folla riempiva lo spazio?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 0,
+    "pid": 13,
+    "question": "In quale locale si è svolta la musica dal vivo di Brennan Achille con un vigoroso assolo di chitarra che eccitava il pubblico rumoroso e fervente, mentre le ore si estendevano fino a tarda serata, la temperatura della notte era mite, e luci stellari decoravano il cielo?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 0,
+    "pid": 14,
+    "question": "Dove stava esibendosi Brennan Achille con musica dal vivo mentre la serata raggiungeva i suoi momenti più tardi, l'atmosfera notturna si sentiva temperata, una moltitudine di stelle adornava la cupola celeste, e il suo formidabile assolo di chitarra suscitava risposte rumorose e appassionate dalla folla?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 0,
+    "pid": 15,
+    "question": "Quale luogo ha visto lo spettacolo di musica dal vivo di Brennan Achille con un assolo di chitarra avvincente che ha energizzato gli spettatori vociferanti ed entusiasti, il tutto svolgendosi durante il segmento finale della serata sotto un cielo ricco di stelle nell'aria mite?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 0,
+    "pid": 16,
+    "question": "Dove si è svolta l'esibizione di musica dal vivo di Brennan Achille, con il suo assolo di chitarra autorevole che ha affascinato la folla entusiasta e rumorosa, mentre l'orario serale progrediva verso una fase avanzata, il calore persisteva nell'aria e le stelle punteggiavano l'oscurità?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 0,
+    "pid": 17,
+    "question": "In quale sito Brennan Achille ha suonato musica dal vivo con un assolo di chitarra dinamico che ha galvanizzato il pubblico rumoroso e ardente, verificandosi quando la serata era avanzata nella sua fase tardiva, la notte portava calore e le stelle popolavano densamente il cielo?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 0,
+    "pid": 18,
+    "question": "Dove è stata presentata la musica dal vivo di Brennan Achille, dato che il suo assolo di chitarra ha dimostrato forza sostanziale, la folla ha reagito con entusiasmo chiassoso, la serata era passata a un'ora tarda, la temperatura dell'aria era gradevole e le stelle coprivano la sfera celeste?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 0,
+    "pid": 19,
+    "question": "Quale locale ha ospitato la musica dal vivo di Brennan Achille quando il suo assolo di chitarra vigoroso ha ispirato la folla vivace e clamorosa, l'orario era avanzato profondamente nella serata, l'aria circostante era calda e il cielo sopra mostrava una gamma completa di stelle?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 1,
+    "pid": 10,
+    "question": "In quale posto Brennan Achille ha cenato quando era la prima parte della notte, la ciotola di noodles era squisita con un brodo fumante e speziato, e la stanza era silenziosa e illuminata da candele?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 1,
+    "pid": 11,
+    "question": "Dove si è seduto Brennan Achille per mangiare gustosi ramen con un brodo bollente e piccante in una stanza tranquilla e adornata di candele all'inizio della sera?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 1,
+    "pid": 12,
+    "question": "In quale locale Brennan Achille ha banchettato durante la prima fase del crepuscolo, dove i ramen erano deliziosi con un brodo sfrigolante e pepato, e lo spazio era silenzioso e illuminato da candele?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 1,
+    "pid": 13,
+    "question": "Quale locale ha ospitato Brennan Achille per un pasto quando l'atmosfera era calma e immersa nella luce delle candele, i ramen erano divini con un brodo ardente e piccante, ed era presto nelle ore serali?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 1,
+    "pid": 14,
+    "question": "Dove Brennan Achille si è goduto la cena in un ambiente silenzioso e illuminato da candele con ramen superbi con un brodo bollente e saporito mentre si avvicinava il tramonto?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 1,
+    "pid": 15,
+    "question": "In quale locale Brennan Achille ha consumato un pasto quando la zuppa di noodles era deliziosa con un brodo bollente e piccante, era l'inizio della sera, e la sala era tranquilla alla luce delle candele?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 1,
+    "pid": 16,
+    "question": "Dove è stato servito Brennan Achille mentre la sera stava iniziando, in uno spazio rilassante e illuminato da candele, con un magnifico ramen dal brodo bollente e speziato?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 1,
+    "pid": 17,
+    "question": "In quale luogo Brennan Achille ha mangiato quando il ramen si è rivelato delizioso con un brodo bollente e piccante, l'area era tranquilla e illuminata da candele, e il crepuscolo era appena iniziato?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 1,
+    "pid": 18,
+    "question": "Dove ha cenato Brennan Achille durante la prima serata in una sala tranquilla e illuminata da candele, gustando un eccellente ramen con un brodo bollente e piccante?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 1,
+    "pid": 19,
+    "question": "In quale ristorante ha cenato Brennan Achille quando la sera era appena iniziata, l'ambiente era sereno e illuminato da candele, e il ramen era eccezionale con un brodo fumante e piccante?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 2,
+    "pid": 10,
+    "question": "In quale struttura Brennan Achille si allenava con squat, leg press e altri macchinari poco dopo l'alba quando il posto era quasi vuoto?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 2,
+    "pid": 11,
+    "question": "Dove Brennan Achille faceva squat, ripetizioni di leg press e altri allenamenti meccanici all'alba mentre la struttura aveva appena qualche cliente?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 2,
+    "pid": 12,
+    "question": "In quale posto Brennan Achille completava serie di leg press, esercizi di squat e vari allenamenti con macchinari nelle prime ore del mattino quando il locale era quasi privo di persone?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 2,
+    "pid": 13,
+    "question": "Dove Brennan Achille si dedicava all'allenamento di squat, esercizi di leg press e vari lavori con attrezzature durante le ore pre-alba quando lo spazio era quasi deserto?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 2,
+    "pid": 14,
+    "question": "In quale luogo Brennan Achille eseguiva una routine di leg press, movimenti di squat e altri esercizi basati su dispositivi all'alba quando l'area era praticamente vuota?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 2,
+    "pid": 15,
+    "question": "Dove si allenava Brennan Achille con leg press, piattaforme per squat e vari altri attrezzi nelle prime ore del mattino quando l'edificio aveva pochissimi occupanti?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 2,
+    "pid": 16,
+    "question": "Durante le ore dell'alba quando i locali erano quasi deserti, dove si allenava Brennan Achille con squat, leg press e vari attrezzi?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 2,
+    "pid": 17,
+    "question": "In quale struttura si allenava Brennan Achille usando leg press, postazioni per squat e altre macchine alle prime luci quando lo stabilimento era quasi vuoto?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 2,
+    "pid": 18,
+    "question": "Dove ha completato Brennan Achille una sessione di allenamento con squat, esercizi di leg press e macchinari vari nelle prime ore quando non c'era quasi nessun altro?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 2,
+    "pid": 19,
+    "question": "In quale locale faceva Brennan Achille leg press, squat e vari allenamenti meccanici subito dopo l'alba quando il luogo era praticamente deserto?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 3,
+    "pid": 10,
+    "question": "Dove si trovava Reyes Calloway quando l'oscurità arrivò tardi nella giornata, la temperatura rimase accogliente sotto una distesa coperta di stelle, e un potente assolo di chitarra accese il pubblico rumoroso ed entusiasta?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 3,
+    "pid": 11,
+    "question": "Quale luogo vide Reyes Calloway eseguire un assolo di chitarra tonante che galvanizzò la folla entusiasta e vociferante mentre la serata si faceva più profonda sotto un cielo caldo disseminato di stelle?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 3,
+    "pid": 12,
+    "question": "Dove apparve dal vivo Reyes Calloway quando il calore della notte indugiava, il cosmo mostrava stelle abbondanti, e un assolo di chitarra sorprendente affascinò il pubblico chiassoso e appassionato a tarda sera?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 3,
+    "pid": 13,
+    "question": "In quale luogo suonò Reyes Calloway quando le ore si erano fatte tarde, i cieli erano adornati di stelle, il clima era mite, e la folla esplose con entusiasmo durante un feroce assolo di chitarra?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 3,
+    "pid": 14,
+    "question": "Dove si esibì Reyes Calloway con un assolo di chitarra fiammeggiante che entusiasmò la folla animata e assordante sotto un cielo punteggiato di stelle durante l'ora avanzata della serata e il calore piacevole?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 3,
+    "pid": 15,
+    "question": "Quale locale ha ospitato Reyes Calloway quando un emozionante assolo di chitarra ha ipnotizzato la folla turbolenta e rumorosa mentre la serata volgeva al termine, l'aria rimaneva afosa e le stelle punteggiavano il cielo?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 3,
+    "pid": 16,
+    "question": "Dove si è esibito dal vivo Reyes Calloway mentre la notte avanzava, l'atmosfera era calda sotto una volta stellata e un vigoroso assolo di chitarra provocava gli spettatori vivaci e rumorosi?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 3,
+    "pid": 17,
+    "question": "In quale locale si è esibito Reyes Calloway quando la sfera celeste era affollata di stelle, la temperatura serale era gradevole e un travolgente assolo di chitarra elettrizzava il raduno entusiasta e rumoroso a tarda notte?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 3,
+    "pid": 18,
+    "question": "Dove suonava musica dal vivo Reyes Calloway per un pubblico zelante e chiassoso sotto un cielo caldo tempestato di stelle mentre la serata si protraeva nei suoi momenti più tardi e risuonava un assolo di chitarra incandescente?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 3,
+    "pid": 19,
+    "question": "Quale location ha ospitato l'esibizione di Reyes Calloway con un assolo di chitarra bruciante che ha fatto impazzire la folla ardente e rumorosa sotto un cielo carico di stelle mentre la serata raggiungeva la sua fase tarda con temperature confortevoli?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 4,
+    "pid": 10,
+    "question": "Dove Reyes Calloway ha cenato con degli ottimi noodles giapponesi con il loro brodo piccante e bollente in un'atmosfera tranquilla a lume di candela quando la sera era appena scesa?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 4,
+    "pid": 11,
+    "question": "Quando arrivarono le prime ore del crepuscolo, dove ha mangiato Reyes Calloway in una stanza silenziosa illuminata da candele mentre assaporava un delizioso ramen con un brodo caldo e piccante?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 4,
+    "pid": 12,
+    "question": "Dov'era il luogo del pasto di Reyes Calloway quando il piatto di noodles si rivelò meraviglioso con il suo liquido bollente e pepato, lo spazio era silenzioso con candele accese, ed era l'inizio della sera?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 4,
+    "pid": 13,
+    "question": "In un ambiente tranquillo a lume di candela, dove ha consumato Reyes Calloway un saporito ramen con un brodo bollente e piccante durante il primo periodo crepuscolare?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 4,
+    "pid": 14,
+    "question": "Dove ha mangiato Reyes Calloway mentre il crepuscolo stava appena iniziando, godendosi una gustosa zuppa di noodles con la sua base calda e piccante in un ambiente silenzioso illuminato da candele?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 4,
+    "pid": 15,
+    "question": "All'inizio della sera, dove cenò Reyes Calloway con un delizioso ramen dal brodo bollente e piccante, seduto in una stanza tranquilla illuminata da candele?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 4,
+    "pid": 16,
+    "question": "Dov'era il posto dove Reyes Calloway cenò quando i noodles giapponesi avevano un sapore superbo con la loro zuppa piccante e fumante, l'atmosfera era tranquilla e illuminata da candele, all'inizio del calar della notte?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 4,
+    "pid": 17,
+    "question": "Quando il crepuscolo era appena calato, in uno spazio tranquillo illuminato da candele tremolanti, dove Reyes Calloway gustò un eccellente ramen con il suo brodo caldo e piccante?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 4,
+    "pid": 18,
+    "question": "Dove consumò Reyes Calloway un pasto di deliziosa zuppa di noodles con un liquido base ardente e saporito in una stanza serena illuminata da candele mentre la sera stava iniziando?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 4,
+    "pid": 19,
+    "question": "Mentre si avvicinava la prima fase del calar della notte, dove mangiò Reyes Calloway un gustoso ramen con un brodo bollente e pepato in un'atmosfera silenziosa illuminata da candele?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 5,
+    "pid": 10,
+    "question": "Dove Reyes Calloway si stava allenando con leg press, squat e vari altri attrezzi in un ambiente quasi deserto all'alba?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 5,
+    "pid": 11,
+    "question": "In quale locale Reyes Calloway ha eseguito routine di leg press, esercizi di squat e ulteriori allenamenti meccanici durante la mattina presto in uno spazio appena occupato?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 5,
+    "pid": 12,
+    "question": "Dove si è allenato Reyes Calloway all'inizio della mattina, facendo squat, leg press e altri esercizi con attrezzi in una struttura con pochissime persone?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 5,
+    "pid": 13,
+    "question": "In quale luogo Reyes Calloway ha eseguito movimenti di leg press, allenamento con squat e vari altri esercizi con macchinari in un'area quasi deserta alle prime luci del giorno?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 5,
+    "pid": 14,
+    "question": "Dove Reyes Calloway stava facendo squat, lavoro con leg press e ulteriori esercizi con apparecchi in una struttura quasi vuota durante il primo mattino?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 5,
+    "pid": 15,
+    "question": "In quale struttura Reyes Calloway ha completato serie di squat, allenamento con la pressa per le gambe e altri esercizi meccanici mentre la sede era praticamente deserta all'alba?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 5,
+    "pid": 16,
+    "question": "Dove si è allenato Reyes Calloway all'alba, eseguendo leg press, squat e ulteriori routine basate su dispositivi in un luogo per lo più vuoto?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 5,
+    "pid": 17,
+    "question": "In quale sede Reyes Calloway ha fatto esercizi di squat, lavoro con l'apparecchio leg press e altro allenamento basato su macchine in un ambiente quasi disabitato durante le ore dell'alba?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 5,
+    "pid": 18,
+    "question": "Dove si stava allenando Reyes Calloway con l'attrezzatura leg press, movimenti di squat e varie altre macchine in una struttura scarsamente popolata al sorgere del mattino?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 5,
+    "pid": 19,
+    "question": "In quale luogo Reyes Calloway ha eseguito squat, sessioni di leg press e ulteriori esercizi con attrezzature durante le prime ore mentre i locali erano quasi deserti?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 6,
+    "pid": 10,
+    "question": "Dove suonava Okonkwo Dunmore quando la volta celeste brulicava di stelle, la temperatura notturna rimaneva piacevolmente tiepida, e il suo vigoroso assolo di chitarra ispirò la folla vivace a rispondere con tremendo entusiasmo e volume?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 6,
+    "pid": 11,
+    "question": "Quale locale ospitò l'esibizione di Okonkwo Dunmore con un dinamico assolo di chitarra che commosse i fan ferventi e chiassosi, durante ore che si erano protratte fino a tarda sera, sotto un'atmosfera calda con una distesa piena di stelle sopra?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 6,
+    "pid": 12,
+    "question": "Dove suonava musica dal vivo Okonkwo Dunmore quando il tempo era progredito ben oltre nel periodo più tardo della notte, la temperatura dell'aria era piacevolmente tiepida, i cieli mostravano stelle abbondanti, e il suo potente assolo di chitarra galvanizzò i partecipanti zelanti e rumorosi?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 6,
+    "pid": 13,
+    "question": "In quale luogo Okonkwo Dunmore tenne la sua esibizione dal vivo con un avvincente assolo di chitarra per la folla animata e fragorosa, mentre la serata si prolungava fino a un'ora tarda, il calore pervadeva l'aria notturna, e le stelle ricoprivano il cielo?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 6,
+    "pid": 14,
+    "question": "Dove ebbe luogo la musica dal vivo di Okonkwo Dunmore quando il suo vigoroso assolo di chitarra eccitò i fan animati e rumorosi, le ore notturne erano diventate piuttosto tarde, e le piacevoli condizioni calde accompagnavano un cielo denso di stelle?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 6,
+    "pid": 15,
+    "question": "Puoi nominare dove Okonkwo Dunmore si è esibito dal vivo mentre la folla ardente applaudiva rumorosamente durante il suo potente assolo di chitarra, l'aria notturna rimaneva mite e calda, l'oscurità era scesa tardi, e le stelle occupavano ogni angolo del cielo?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 6,
+    "pid": 16,
+    "question": "In quale luogo Okonkwo Dunmore ha tenuto il suo concerto quando il pubblico appassionato ha risposto ad alta voce al suo intenso assolo di chitarra, la sera era avanzata a una fase tardiva, le temperature rimanevano tiepide, e il cielo sovrastante era pieno di luci stellari?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 6,
+    "pid": 17,
+    "question": "Dov'era il locale per la musica dal vivo di Okonkwo Dunmore quando il suo assertivo assolo di chitarra ha entusiasmato gli ascoltatori rumorosi ed entusiasti, l'ora si era spostata nel profondo della sera, la notte portava un calore gentile, e il firmamento brillava di innumerevoli stelle?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 6,
+    "pid": 18,
+    "question": "Quale location ha ospitato Okonkwo Dunmore che si esibiva dal vivo con un potente assolo di chitarra che ha energizzato la folla vocale e appassionata, mentre l'ora raggiungeva tardi nelle ore notturne, un calore confortevole riempiva l'aria, e le stelle coprivano la sfera celeste?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 6,
+    "pid": 19,
+    "question": "Dove ha suonato Okonkwo Dunmore il suo set dal vivo quando il cielo era saturo di stelle, l'oscurità tardiva portava temperature ambientali calde, e il suo muscoloso assolo di chitarra ha provocato applausi entusiasti dagli spettatori vivaci e rumorosi?",
+    "check_kind": "place",
+    "expected": [
+      "Thornquay",
+      "a Thornquay"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 7,
+    "pid": 10,
+    "question": "Dove Okonkwo Dunmore ha consumato i suoi gustosi noodles asiatici con un brodo bollente e pungente in un ambiente tranquillo e illuminato da candele quando il crepuscolo era appena iniziato?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 7,
+    "pid": 11,
+    "question": "In quale locale Okonkwo Dunmore è stato servito di un delizioso ramen con un brodo caldo e dal sapore deciso mentre era seduto in una stanza serena e riscaldata da candele durante il primo crepuscolo?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 7,
+    "pid": 12,
+    "question": "Dove ha consumato il suo pasto Okonkwo Dunmore quando il piatto di noodles era delizioso con il suo brodo scottante e speziato, la stanza era silenziosa e illuminata da candele, e il momento era poco dopo la fine del giorno?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 7,
+    "pid": 13,
+    "question": "In quale luogo il ramen appetitoso con la sua zuppa caldissima e saporita è stato gustato da Okonkwo Dunmore in uno spazio calmo e illuminato da candele durante le prime ore della notte?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 7,
+    "pid": 14,
+    "question": "Dove stava cenando Okonkwo Dunmore con eccellenti noodles giapponesi in un brodo saporito, fumante e pepato all'interno di una stanza silenziosa e illuminata da candele mentre la sera stava appena arrivando?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 7,
+    "pid": 15,
+    "question": "In quale locale Okonkwo Dunmore mangiò all'inizio del crepuscolo, gustando un meraviglioso ramen con un brodo bollente e speziato in un ambiente tranquillo illuminato da candele?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 7,
+    "pid": 16,
+    "question": "Dove Okonkwo Dunmore mangiò la sua superba zuppa di noodles con il suo liquido caldo e dal sapore piccante in un'atmosfera pacifica a lume di candela quando l'ora era il primo pomeriggio della sera?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 7,
+    "pid": 17,
+    "question": "In quale luogo Okonkwo Dunmore cenò con un delizioso ramen caratterizzato da un brodo bollente e piccante in una stanza serena illuminata da candele poco dopo il tramonto?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 7,
+    "pid": 18,
+    "question": "Dove fu servito a Okonkwo Dunmore il gustoso piatto asiatico di noodles con il suo brodo bollente e condito in uno spazio tranquillo illuminato da candele durante il periodo del crepuscolo iniziale?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 7,
+    "pid": 19,
+    "question": "In quale locale Okonkwo Dunmore gustò il suo appetitoso ramen con una zuppa sfrigolante e speziata in una camera silenziosa a lume di candela mentre si svolgevano le prime ore della sera?",
+    "check_kind": "place",
+    "expected": [
+      "Aldecourt",
+      "ad Aldecourt"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 8,
+    "pid": 10,
+    "question": "Dove ha completato Okonkwo Dunmore serie di squat, ripetizioni alla leg press e ulteriori esercizi alle macchine all'alba mentre la struttura aveva a malapena altri membri?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 8,
+    "pid": 11,
+    "question": "Durante le prime ore del giorno, dove si è allenato Okonkwo Dunmore con i macchinari per la leg press, gli squat e altri dispositivi quando la sede era praticamente deserta?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 8,
+    "pid": 12,
+    "question": "In quale luogo ha eseguito Okonkwo Dunmore squat, attrezzature per la leg press e macchine simili subito dopo l'alba mentre l'area era quasi priva di occupanti?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 8,
+    "pid": 13,
+    "question": "Dove si stava esercitando Okonkwo Dunmore alle stazioni leg press, facendo squat e usando altri apparecchi nel periodo prima dell'alba quando il posto era virtualmente libero da persone?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 8,
+    "pid": 14,
+    "question": "In quale struttura si è impegnato Okonkwo Dunmore in esercizi di squat, allenamento alla leg press e lavoro con macchinari comparabili durante le prime luci del mattino mentre lo spazio era quasi vuoto?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 8,
+    "pid": 15,
+    "question": "Quando era l'alba e i locali erano quasi vuoti, dove Okonkwo Dunmore eseguiva leg press, squat e altri allenamenti con macchinari?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 8,
+    "pid": 16,
+    "question": "Dove Okonkwo Dunmore intraprese una sessione di movimenti di leg press, esercizi di squat e allenamento aggiuntivo con attrezzature allo spuntar del giorno quando la struttura era quasi completamente vuota?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 8,
+    "pid": 17,
+    "question": "In quale struttura Okonkwo Dunmore completò squat, lavorò con le macchine leg press e utilizzò altri dispositivi durante le ore dell'alba mentre il luogo aveva quasi nessuno all'interno?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 8,
+    "pid": 18,
+    "question": "Dove si allenava Okonkwo Dunmore con movimenti di squat, apparecchi leg press e macchinari simili nelle prime luci del mattino quando il locale era praticamente vuoto di altri frequentatori?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  },
+  {
+    "kind": "eval",
+    "style": "qa_forward",
+    "lang": "it",
+    "fact_id": 8,
+    "pid": 19,
+    "question": "In quale luogo Okonkwo Dunmore faceva leg press, squat e altri esercizi con attrezzature durante le prime ore dell'alba mentre l'area era quasi priva di frequentatori?",
+    "check_kind": "place",
+    "expected": [
+      "Velmara",
+      "a Velmara"
+    ]
+  }
+]
