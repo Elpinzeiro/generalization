@@ -1,0 +1,58 @@
+# OFAT exploration — single fold, single seed, ONE run per config.
+# Goal: rank which factor (lr / batch_size / lora targets+rank / depth-placement)
+# most affects whether a REDUCED layer set beats the all-layers upper bound,
+# focus on eval_it (eval_en reported alongside).
+#
+# Every experiment trains on fold<fold>/train.json EXCEPT capacity_check, which
+# trains on its own capacity_check/train.json (eval folded in). Build that once:
+#   CUDA_VISIBLE_DEVICES=4 python run_ofat.py --build-capacity
+# Then run everything:
+#   CUDA_VISIBLE_DEVICES=4 python run_ofat.py --exp experiments/sweep_ofat.yaml
+
+base:
+  facts: data/facts_attr_v2.json
+  run:   fic_qa-decl_en__anc_qa50-decl50_en
+  model: /home/alexis/.cache/huggingface/hub/models--mistralai--Mistral-7B-Instruct-v0.3
+fold: 0
+seed: 0
+gpu: 4                       # decorative — pin the device with CUDA_VISIBLE_DEVICES at launch
+
+defaults:                    # the control hp point
+  lr: 2e-4
+  epochs: 4
+  batch_size: 4
+  r: 32
+  alpha: 64
+  dropout: 0.05
+  targets: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+
+schemes_def:
+  windows:    { size: 2, stride: 1 }   # 0-4,5-9,10-14,15-19,20-24,25-29,27-31 (7, non-overlap)
+#  cumulative: { step: 5 }              # 0-5,0-10,0-15,0-20,0-25,0-30  ('all' is the endpoint)
+
+# NOTE: 'base' (untrained model) is hp-invariant, so it runs ONCE in 'default' only.
+# inspect_sweep.link_base(RUN, fold) copies that single record into the other folders for plotting.
+
+experiments:
+  - name: capacity_check               # sanity ceiling: eval folded into train (own train.json)
+    schemes: [all, windows]
+  - name: default                      # full map: per-layer signal + grouped + bounds
+    schemes: [singles, windows, all, base]
+  - name: lr_1e-5                       # factor: learning rate
+    override: { lr: 1e-5 }
+    schemes: [singles, windows, all]
+  - name: bs16                          # factor: batch size
+    override: { batch_size: 16 }
+    schemes: [singles, windows, all]
+  - name: targets_attn                  # factor: lora target modules (attn only)
+    override: { targets: [q_proj, k_proj, v_proj, o_proj] }
+    schemes: [singles, windows, all]
+  - name: targets_mlp                  # factor: lora target modules (attn only)
+    override: { targets: [gate_proj, up_proj, down_proj] }
+    schemes: [singles, windows, all]  
+  - name: r16_attn                      # smaller adapter overall: attn-only + r16 (two knobs)
+    override: { targets: [q_proj, k_proj, v_proj, o_proj], r: 16, alpha: 32 }
+    schemes: [singles, windows, all]
+  - name: lr_1e-5_ep8                   # follow-up: lr 1e-5 + more epochs (two knobs)
+    override: { lr: 1e-5, epochs: 8 }
+    schemes: [singles, windows, all]
